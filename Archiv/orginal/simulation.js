@@ -13,95 +13,85 @@ function setup() {
     noStroke();
     frameRate(10)
 }
+class LivingCreature {
+    constructor(color) {
+        this.stepCount = frameCount + 1;
+        this.color = color;
+        this.blockSize = 5
+    }
+    multiply(search, creature) {
+        let emptyFields = findNeighbourPositions(this.row, this.col, 1, search);
+        if (emptyFields.length > 0) {
+            let randomEmptyField = random(emptyFields);
+            let row = randomEmptyField[0];
+            let col = randomEmptyField[1];
+            matrix[row][col] = new creature();
+        }
+    }
+}
 
 // Grass starts with a random energy between 0 and 2.
 // It gains 1 energy every frame.
 // When it reaches 7 energy, it creates a new grass object
 // in an empty neighbour cell and resets its energy to 0.
-class Grass {
+class Grass extends LivingCreature {
     constructor() {
-        this.stepCount = frameCount + 1;
-        this.color = "green";
+        super("green");
         this.energy = int(random(0, 3));
-        this.blockSize = 5
     }
 
     step() {
         this.energy++;
         if (this.energy >= 7) {
-            this.multiply();
+            this.multiply(Empty, Grass);
             this.energy = 0;
-        }
-    }
-
-    multiply() {
-        let emptyFields = findNeighbourPositions(this.row, this.col, 1, Empty);
-        if (emptyFields.length > 0) {
-            let randomEmptyField = random(emptyFields);
-            let row = randomEmptyField[0];
-            let col = randomEmptyField[1];
-            matrix[row][col] = new Grass();
         }
     }
 }
 
-class Empty { constructor() { this.color = "white"; this.blockSize = 5} }
-class GrassEater {
+class Empty { constructor() { this.color = "white"; this.blockSize = 5 } }
+class GrassEater extends LivingCreature {
     constructor() {
-        this.color = "yellow"
-        this.stepCount = frameCount + 1;
+        super("yellow");
         this.live = 0
         this.eaten = 0
-        this.blockSize = 5
     }
     step() {
         this.move();
-        
+
         if (this.live >= 10) {
             this.death()
         }
         if (this.eaten >= 5) {
-            this.multiply()
-        }if(this.eaten >= 25){
-            matrix[this.row][this.col] = new MobSpawner()
+            this.multiply(Grass, getRandomCreature2);
+        } if (this.eaten >= 25) {
+            matrix[this.row][this.col] = new MobSpawner();
         }
         this.live++;
     }
     move() {
         let neighbours = findNeighbourPositions(this.row, this.col, 1, Grass)
         if (neighbours.length > 0) {
-            let randomNeighbour = random(neighbours)
-            updateCreaturePosition(this, randomNeighbour)
+            let randomNeighbour = random(neighbours);
+            updateCreaturePosition(this, randomNeighbour);
             this.eaten++;
         }
         let neighbours_e = findNeighbourPositions(this.row, this.col, 1, Empty)
         if (neighbours_e.length > 0) {
-            let randomNeighbour = random(neighbours_e)
-            updateCreaturePosition(this, randomNeighbour)
+            let randomNeighbour = random(neighbours_e);
+            updateCreaturePosition(this, randomNeighbour);
             this.eaten += 2;
         }
-    }
-    multiply() {
-        let emptyFields = findNeighbourPositions(this.row, this.col, 1, Grass);
-        if (emptyFields.length > 0) {
-            let randomEmptyField = random(emptyFields);
-            let row = randomEmptyField[0];
-            let col = randomEmptyField[1];
-            matrix[row][col] = new getRandomCreature2();
-        }
-
     }
     death() {
         matrix[this.row][this.col] = new Empty();
     }
-    
+
 }
-class MeatEater {
+class MeatEater extends LivingCreature {
     constructor() {
-        this.color = "red"
-        this.stepCount = frameCount + 1
+        super("red");
         this.live = 0
-        this.blockSize = 5
         this.eaten = 0
         
     }
@@ -112,7 +102,7 @@ class MeatEater {
         if (this.live >= 10) {
             this.death()
         }if(this.eaten >= 6){
-            this.multiply()
+            this.multiply(deathGrass, MeatEater)
         }
         this.live++;
     }
@@ -148,112 +138,86 @@ class MeatEater {
             this.death()
         }
     }
-    multiply() {
-        let emptyFields = findNeighbourPositions(this.row, this.col, 1, deathGrass);
-        if (emptyFields.length > 0) {
-            let randomEmptyField = random(emptyFields);
-            let row = randomEmptyField[0];
-            let col = randomEmptyField[1];
-            matrix[row][col] = new MeatEater();
+}
+
+class MobSpawner{
+    constructor() {
+        this.color = "grey"
+        this.stepCount = frameCount + 1
+        this.counter = 0
+        this.blockSize = 5
+    }
+    step() {
+        this.counter++;
+
+        if (this.counter >= 25) {
+            this.spawn()
+            this.counter = 0
         }
-    }
 
     }
-
-    class MobSpawner{
-       constructor(){
-           this.color = "grey"
-           this.stepCount = frameCount + 1
-           this.counter = 0
-           this.blockSize = 5
-       } 
-       step(){
-           this.counter++;
-        
-           if(this.counter >= 25){
-               this.spawn()
-               this.counter = 0
-           }
-
-       }
-       spawn(){
+    spawn() {
         matrix[this.row][this.col] = new getRandomCreature1()
-        
-       }
-       
+
     }
 
+}
 
-    class GrassEaterPups {
-        constructor() {
-            this.color = "#9CFF1D"
-            this.stepCount = frameCount + 1;
-            this.live = 0
-            this.blockSize = 20
-        }
-        step() {
-            this.move();
-            this.ersticken()
-            
-            if (this.live >= 25) {
-                this.death()
-            }
-            this.live++;
-        }
-        move() {
-            let neighbours = findNeighbourPositions(this.row, this.col, 2, Grass)
-            if (neighbours.length > 0) {
-                let randomNeighbour = random(neighbours)
-                updateCreaturePosition(this, randomNeighbour)
-    
-            }
-            let neighbours_e = findNeighbourPositions(this.row, this.col, 2, Empty)
-            if (neighbours_e.length > 0) {
-                let randomNeighbour = random(neighbours_e)
-                updateCreaturePosition(this, randomNeighbour)
 
-            }
-        }
-        death() {
-            matrix[this.row][this.col] = new Empty();
-        }
-        ersticken(){
-            let grassd = findNeighbourPositions(this.row, this.col, 2, Grass)
-            if(grassd.length > 0){
-                matrix[this.row][this.col] = new deathGrass()
-            }
-        }
-        
+class GrassEaterPups extends GrassEater {
+    constructor() {
+        super("#9CFF1D");
+        this.live = 0
+        this.blockSize = 20
     }
+    step() {
+        this.move();
+        this.ersticken()
 
-    class deathGrass {
-        constructor() {
-            this.stepCount = frameCount + 1;
-            this.color = "blue";
-            this.energy = int(random(0, 3));
-            this.blockSize = 5
+        if (this.live >= 25) {
+            this.death()
         }
-    
-        step() {
-            this.energy++;
-            if (this.energy >= 14) {
-                this.multiply();
-                this.energy = 0;
-            }
+        this.live++;
+    }
+    move() {
+        let neighbours = findNeighbourPositions(this.row, this.col, 2, Grass)
+        if (neighbours.length > 0) {
+            let randomNeighbour = random(neighbours)
+            updateCreaturePosition(this, randomNeighbour)
+
         }
-    
-        multiply() {
-            let emptyFields = findNeighbourPositions(this.row, this.col, 1, Empty);
-            if (emptyFields.length > 0) {
-                let randomEmptyField = random(emptyFields);
-                let row = randomEmptyField[0];
-                let col = randomEmptyField[1];
-                matrix[row][col] = new deathGrass();
-            }
+        let neighbours_e = findNeighbourPositions(this.row, this.col, 2, Empty)
+        if (neighbours_e.length > 0) {
+            let randomNeighbour = random(neighbours_e)
+            updateCreaturePosition(this, randomNeighbour)
+
+        }
+    }
+    ersticken() {
+        let grassd = findNeighbourPositions(this.row, this.col, 2, Grass)
+        if (grassd.length > 0) {
+            matrix[this.row][this.col] = new deathGrass()
         }
     }
 
-    // What probability each creature has to be created
+}
+
+class deathGrass extends LivingCreature {
+    constructor() {
+        super("blue");
+        this.energy = int(random(0, 3));
+    }
+
+    step() {
+        this.energy++;
+        if (this.energy >= 14) {
+            this.multiply(Empty, deathGrass);
+            this.energy = 0;
+        }
+    }
+}
+
+// What probability each creature has to be created
 let creaturePropabilities2 = [
     [GrassEater, 0.95],
     [GrassEaterPups, 0.05],
@@ -395,6 +359,5 @@ function draw() {
         }
     }
 }
-
 
 
