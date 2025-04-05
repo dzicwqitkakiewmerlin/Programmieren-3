@@ -1,4 +1,5 @@
-class Grass extends LivingCreature {
+import { LivingCreature } from "./LivingCreature.js";
+export class Grass extends LivingCreature {
     constructor() {
         super("green");
         this.energy = int(random(0, 3));

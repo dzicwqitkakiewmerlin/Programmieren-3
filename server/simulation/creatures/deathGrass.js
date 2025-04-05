@@ -1,3 +1,4 @@
+import { LivingCreature } from "./LivingCreature.js";
 class deathGrass extends LivingCreature {
     constructor() {
         super("blue");

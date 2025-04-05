@@ -1,4 +1,6 @@
-class GrassEaterPups extends GrassEater {
+import { findNeighbourPositions } from "../findNeighbourPosition.js";
+import { GrassEater } from "./GrassEater.js";
+export class GrassEaterPups extends GrassEater {
     constructor() {
         super("#9CFF1D");
         this.live = 0

@@ -1,0 +1,15 @@
+{
+  "name": "programmieren-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "initialization.js",
+  "scripts": {
+    "start": "node initialization.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
+}

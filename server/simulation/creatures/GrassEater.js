@@ -1,4 +1,26 @@
-class GrassEater extends LivingCreature {
+import { GrassEaterPups } from "./GrassEaterPups.js";
+import { findNeighbourPositions } from "../findNeighbourPosition.js";
+// What probability each creature has to be created
+let creaturePropabilities2 = [
+    [GrassEater, 0.95],
+    [GrassEaterPups, 0.05],
+];
+
+// Choose a random creature based on the probabilities
+function getRandomCreature2() {
+    let rand = random();
+    let sum = 0;
+    for (let i = 0; i < creaturePropabilities2.length; i++) {
+        let creatureCLass = creaturePropabilities2[i][0];
+        let propability = creaturePropabilities2[i][1];
+        sum += propability;
+        if (rand < sum) {
+            return new creatureCLass();
+        }
+    }
+    return new Empty();
+}
+export class GrassEater extends LivingCreature {
     constructor() {
         super("yellow");
         this.live = 0

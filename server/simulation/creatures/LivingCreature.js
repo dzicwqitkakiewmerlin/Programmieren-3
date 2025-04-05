@@ -1,4 +1,5 @@
-class LivingCreature {
+import { findNeighbourPositions } from "../findNeighbourPosition.js";
+export class LivingCreature {
     constructor(color) {
         this.stepCount = frameCount + 1;
         this.color = color;

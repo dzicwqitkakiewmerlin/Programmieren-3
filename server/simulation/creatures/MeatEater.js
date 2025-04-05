@@ -1,4 +1,5 @@
-class MeatEater extends LivingCreature {
+import { findNeighbourPositions } from "../findNeighbourPosition.js";
+export class MeatEater extends LivingCreature {
     constructor() {
         super("red");
         this.live = 0
