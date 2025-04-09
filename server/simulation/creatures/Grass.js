@@ -1,8 +1,10 @@
 import { LivingCreature } from "./LivingCreature.js";
+import { Empty } from "./Empty.js";
+import { random } from "../utils.js";
 export class Grass extends LivingCreature {
     constructor() {
         super("green");
-        this.energy = int(random(0, 3));
+        this.energy = random(0, 3);
     }
 
     step() {

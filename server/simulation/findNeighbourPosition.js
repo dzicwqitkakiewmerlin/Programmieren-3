@@ -1,3 +1,6 @@
+import { matrix } from "./utils.js";
+
+
 export function findNeighbourPositions(x, y, distance, creatureType) {
     let positions = []
     //Alle Koordintaten ermitteln und in der Matrix positions speichern

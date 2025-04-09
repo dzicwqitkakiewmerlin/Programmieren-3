@@ -1,7 +1,8 @@
 import { findNeighbourPositions } from "../findNeighbourPosition.js";
+import { random } from "../utils.js";
+import { matrix } from "../utils.js";
 export class LivingCreature {
     constructor(color) {
-        this.stepCount = frameCount + 1;
         this.color = color;
         this.blockSize = 5
     }
@@ -11,7 +12,7 @@ export class LivingCreature {
             let randomEmptyField = random(emptyFields);
             let row = randomEmptyField[0];
             let col = randomEmptyField[1];
-            matrix[row][col] = new creature();
+            matrix[row][col] = creature();
         }
     }
 }

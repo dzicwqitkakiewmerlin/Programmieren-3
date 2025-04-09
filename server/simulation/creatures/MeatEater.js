@@ -1,4 +1,13 @@
 import { findNeighbourPositions } from "../findNeighbourPosition.js";
+import { LivingCreature } from "./LivingCreature.js";
+import { GrassEater } from "./GrassEater.js";
+import { deathGrass } from "./deathGrass.js";
+import { Empty } from "./Empty.js";
+import { GrassEaterPups } from "./GrassEaterPups.js";
+import { matrix } from "../utils.js";
+import { random } from "../utils.js";
+import { updateCreaturePosition } from "../utils.js";
+
 export class MeatEater extends LivingCreature {
     constructor() {
         super("red");

@@ -1,5 +1,6 @@
 import { LivingCreature } from "./LivingCreature.js";
-class deathGrass extends LivingCreature {
+import { random } from "../utils.js";
+export class deathGrass extends LivingCreature {
     constructor() {
         super("blue");
         this.energy = int(random(0, 3));

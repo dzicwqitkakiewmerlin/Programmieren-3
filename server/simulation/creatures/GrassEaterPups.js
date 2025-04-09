@@ -1,5 +1,8 @@
 import { findNeighbourPositions } from "../findNeighbourPosition.js";
 import { GrassEater } from "./GrassEater.js";
+import { random } from "../utils.js";
+
+
 export class GrassEaterPups extends GrassEater {
     constructor() {
         super("#9CFF1D");

@@ -1,12 +1,13 @@
 import { Grass } from "./creatures/Grass.js";
+import { GrassEaterPups } from "./creatures/GrassEaterPups.js";
 import { GrassEater } from "./creatures/GrassEater.js";
 import { MeatEater } from "./creatures/MeatEater.js";
 import { MobSpawner } from "./creatures/MobSpawner.js";
-
+import { Empty } from "./creatures/Empty.js";
 // list of lists. Contains all creatures.
-let matrix = [];
+export let matrix = [];
 // size of the matrix, how many cells in width and height
-let matrixSize = 200;
+let matrixSize = 20;
 // display size in pixels of each cell
 let blockSize = 5;
 
@@ -14,6 +15,21 @@ let blockSize = 5;
 // Will be called once at the start
 export function setup() {
     fillRandomMatrix();
+}
+
+export function random(...args) {
+    if (args.length === 0) {
+        return Math.random();
+    } else if (args.length === 1 && Array.isArray(args[0])) {
+        return args[0][Math.floor(Math.random() * args[0].length)];
+    } else if (args.length === 1 && typeof args[0] === 'number') {
+        return Math.floor(Math.random() * args[0]);
+    } else if (args.length === 2 && typeof args[0] === 'number' && typeof args[1] === 'number') {
+        return Math.floor(Math.random() * (args[1] - args[0] + 1) - args[0]);
+    } else {
+        console.log(args);
+        throw new Error('Invalid arguments');
+    }
 }
 
 // What probability each creature has to be created
@@ -51,7 +67,7 @@ function fillRandomMatrix() {
 
 // update the position of a creature in the matrix
 // Creates a new empty object in the old position
-function updateCreaturePosition(creature, newPos) {
+export function updateCreaturePosition(creature, newPos) {
     let newRow = newPos[0];
     let newCol = newPos[1];
     matrix[newRow][newCol] = creature;
@@ -63,7 +79,40 @@ function updateCreaturePosition(creature, newPos) {
 // game loop. This will be called every frame
 // It will draw the matrix and update the creatures
 export function draw() {
-    console.log("is running")
+    for (let zeile = 0; zeile < matrix.length; zeile++) {
+        for (let spalte = 0; spalte < matrix[zeile].length; spalte++) {
+
+            
+
+            let element = matrix[zeile][spalte]
+
+            element.row = zeile
+            element.col = spalte
+            element.step()
+
+            let colorchar = element.color[0]
+            process.stdout.write(colorchar)
+            // if ("color" in element == "green") {
+            //     console.log("Y")
+            // } else if (element === "") {
+            //     process.stdout.write("G")
+            // // // ...
+            // }
+          
+        }
+        // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
+        // ist, wollen wir eine neue Zeile auf der Konsole anfangen
+        process.stdout.write("\n")
+    }
+    
+    // optional, aber sehr praktisch:
+    // wir können den Curser auf der Konsole nach oben bewegen,
+    // sodass beim nächsten ausführen der Schleife, die alte Ausgabe
+    // überschrieben wird. Das sorgt dafür, dass wir nicht unendlich
+    // viele Zeilen auf der Konsole bekommen.
+    process.stdout.write("\u001b[" + matrix.length + "A")
+
+    // console.log("is running")
     // for (let row = 0; row < matrixSize; row++) {
     //     for (let col = 0; col < matrixSize; col++) {
     //         let obj = matrix[row][col];
@@ -87,5 +136,3 @@ export function draw() {
     //     }
     // }
 }
-
-
