@@ -10,7 +10,8 @@ import { updateCreaturePosition } from "../utils.js";
 
 export class MeatEater extends LivingCreature {
     constructor() {
-        super("red");
+        super();
+        this.color = "red";
         this.live = 0
         this.eaten = 0
         

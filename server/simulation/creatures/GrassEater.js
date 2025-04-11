@@ -6,14 +6,15 @@ import { Empty } from "./Empty.js";
 import { matrix } from "../utils.js";
 import { updateCreaturePosition } from "../utils.js";
 import { random } from "../utils.js";
-
+import { MobSpawner } from "./MobSpawner.js";
 
 export class GrassEater extends LivingCreature {
     constructor() {
-        super("yellow");
+        super();
+        this.color = "yellow";
         this.live = 0
         this.eaten = 0
-
+        this.creaturePropabilities2 = [];
         // What probability each creature has to be created
         this.creaturePropabilities2 = [
             [GrassEater, 0.95],
@@ -28,7 +29,7 @@ export class GrassEater extends LivingCreature {
             this.death()
         }
         if (this.eaten >= 5) {
-            this.multiply(Grass, this.getRandomCreature2);
+            this.multiply(Grass, this.getRandomCreature2());
         } if (this.eaten >= 25) {
             matrix[this.row][this.col] = new MobSpawner();
         }
@@ -51,10 +52,6 @@ export class GrassEater extends LivingCreature {
     death() {
         matrix[this.row][this.col] = new Empty();
     }
-
-
-
-    // Choose a random creature based on the probabilities
     getRandomCreature2() {
         let rand = random();
         let sum = 0;
@@ -63,10 +60,9 @@ export class GrassEater extends LivingCreature {
             let propability = this.creaturePropabilities2[i][1];
             sum += propability;
             if (rand < sum) {
-                return new creatureCLass();
+                return creatureCLass;
             }
         }
-        return new Empty();
+        return Empty();
     }
-
 }

@@ -2,6 +2,7 @@ import { Grass } from "./Grass.js";
 import { GrassEater } from "./GrassEater.js";
 import { MeatEater } from "./MeatEater.js";
 import { random } from "../utils.js";
+import { matrix } from "../utils.js";
 export class MobSpawner {
     constructor() {
         this.color = "grey"

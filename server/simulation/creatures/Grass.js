@@ -3,7 +3,8 @@ import { Empty } from "./Empty.js";
 import { random } from "../utils.js";
 export class Grass extends LivingCreature {
     constructor() {
-        super("green");
+        super();
+        this.color = "green";
         this.energy = random(0, 3);
     }
 

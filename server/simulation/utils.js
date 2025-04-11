@@ -7,9 +7,7 @@ import { Empty } from "./creatures/Empty.js";
 // list of lists. Contains all creatures.
 export let matrix = [];
 // size of the matrix, how many cells in width and height
-let matrixSize = 20;
-// display size in pixels of each cell
-let blockSize = 5;
+let matrixSize = 50;
 
 // setup the canvas and fill the matrix with creatures
 // Will be called once at the start
@@ -88,10 +86,19 @@ export function draw() {
 
             element.row = zeile
             element.col = spalte
-            element.step()
-
-            let colorchar = element.color[0]
-            process.stdout.write(colorchar)
+            //console.log(matrix[zeile][spalte])
+            if (typeof element.step === "function") {
+                element.step();
+            } else {
+                console.warn(`Element at (${element}) does not have a step method.`);
+            }
+            if (element.color && typeof element.color[0] !== "undefined") {
+                let colorchar = element.color[0];
+                process.stdout.write(colorchar);
+            } else {
+                console.warn(`Element at (${element}) does not have a valid color.`);
+                process.stdout.write(" "); // Default to a blank space
+            }
             // if ("color" in element == "green") {
             //     console.log("Y")
             // } else if (element === "") {

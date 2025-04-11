@@ -63,7 +63,7 @@ class GrassEater extends LivingCreature {
             this.death()
         }
         if (this.eaten >= 5) {
-            this.multiply(Grass, getRandomCreature2);
+            this.multiply(Grass, this.getRandomCreature2());
         } if (this.eaten >= 25) {
             matrix[this.row][this.col] = new MobSpawner();
         }

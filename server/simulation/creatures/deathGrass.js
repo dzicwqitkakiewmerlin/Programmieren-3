@@ -1,9 +1,11 @@
 import { LivingCreature } from "./LivingCreature.js";
 import { random } from "../utils.js";
+import { Empty } from "./Empty.js";
 export class deathGrass extends LivingCreature {
     constructor() {
-        super("blue");
-        this.energy = int(random(0, 3));
+        super();
+        this.color = "black";
+        this.energy = random(0, 3);
     }
 
     step() {

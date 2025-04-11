@@ -1,11 +1,16 @@
 import { findNeighbourPositions } from "../findNeighbourPosition.js";
+import { updateCreaturePosition } from "../utils.js";
 import { GrassEater } from "./GrassEater.js";
 import { random } from "../utils.js";
-
+import { Grass } from "./Grass.js";
+import { Empty } from "./Empty.js";
+import { matrix } from "../utils.js";
+import { deathGrass } from "./deathGrass.js";
 
 export class GrassEaterPups extends GrassEater {
     constructor() {
-        super("#9CFF1D");
+        super();
+        this.color = "#9CFF1D";
         this.live = 0
         this.blockSize = 20
     }

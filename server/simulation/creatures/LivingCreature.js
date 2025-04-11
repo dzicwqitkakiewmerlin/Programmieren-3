@@ -2,8 +2,8 @@ import { findNeighbourPositions } from "../findNeighbourPosition.js";
 import { random } from "../utils.js";
 import { matrix } from "../utils.js";
 export class LivingCreature {
-    constructor(color) {
-        this.color = color;
+    constructor() {
+        this.color = "blue";
         this.blockSize = 5
     }
     multiply(search, creature) {
@@ -12,7 +12,8 @@ export class LivingCreature {
             let randomEmptyField = random(emptyFields);
             let row = randomEmptyField[0];
             let col = randomEmptyField[1];
-            matrix[row][col] = creature();
+            matrix[row][col] = new creature();
         }
     }
+    step(){};
 }
