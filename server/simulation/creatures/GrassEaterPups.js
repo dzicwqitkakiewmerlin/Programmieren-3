@@ -6,6 +6,7 @@ import { Grass } from "./Grass.js";
 import { Empty } from "./Empty.js";
 import { matrix } from "../utils.js";
 import { deathGrass } from "./deathGrass.js";
+import { incrementCounter } from "../data.js";
 
 export class GrassEaterPups extends GrassEater {
     constructor() {
@@ -43,4 +44,7 @@ export class GrassEaterPups extends GrassEater {
             matrix[this.row][this.col] = new deathGrass()
         }
     }
+    count() {
+        incrementCounter("GrassEaterPups")
+    };
 }

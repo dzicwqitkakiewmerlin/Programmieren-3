@@ -79,21 +79,20 @@ export function updateCreaturePosition(creature, newPos) {
 export function draw() {
     for (let zeile = 0; zeile < matrix.length; zeile++) {
         for (let spalte = 0; spalte < matrix[zeile].length; spalte++) {
-
-            
-
             let element = matrix[zeile][spalte]
-
             element.row = zeile
             element.col = spalte
             //console.log(matrix[zeile][spalte])
             if (typeof element.step === "function") {
                 element.step();
+                if (element.count !== "undefined") {
+                    element.count();
+                }
             } else {
                 console.warn(`Element at (${element}) does not have a step method.`);
             }
             if (element.color && typeof element.color[0] !== "undefined") {
-                let colorchar = element.color[0];
+                //let colorchar = element.color[0];
                 //process.stdout.write(colorchar);
                 if(element.color == "green"){
                     process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
@@ -120,12 +119,6 @@ export function draw() {
                 console.warn(`Element at (${element}) does not have a valid color.`);
                 process.stdout.write(" "); // Default to a blank space
             }
-            // if ("color" in element == "green") {
-            //     console.log("Y")
-            // } else if (element === "") {
-            //     process.stdout.write("G")
-            // // // ...
-            // }
           
         }
         // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
@@ -164,3 +157,9 @@ export function draw() {
     //     }
     // }
 }
+
+
+  
+
+  
+  

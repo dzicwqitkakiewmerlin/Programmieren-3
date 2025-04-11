@@ -1,14 +1,20 @@
-<html>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulation of Live</title>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </head>
-
 <body>
-  <!-- hier können noch ein paar Informationen stehen
-   oder verschiedene buttons oder so -->
-</body>
+  <div>
+    <button onclick="godmode()">Godmode</button>
+    <canvas id="myChart" width="400" height="400"></canvas>
 
+  </div>
+</body>
 </html>

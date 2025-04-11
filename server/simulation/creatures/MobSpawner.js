@@ -3,6 +3,7 @@ import { GrassEater } from "./GrassEater.js";
 import { MeatEater } from "./MeatEater.js";
 import { random } from "../utils.js";
 import { matrix } from "../utils.js";
+import { incrementCounter } from "../data.js";
 export class MobSpawner {
     constructor() {
         this.color = "grey"
@@ -18,28 +19,31 @@ export class MobSpawner {
     step() {
         this.counter++;
 
-        if (this.counter >= 25) {
+        if (this.counter >= 10) {
             this.spawn()
             this.counter = 0
         }
 
     }
     spawn() {
-        matrix[this.row][this.col] =  this.getRandomCreature1()
+        matrix[this.row][this.col] = this.getRandomCreature1()
 
     }
     // Choose a random creature based on the probabilities
     getRandomCreature1() {
-    let rand = random();
-    let sum = 0;
-    for (let i = 0; i < this.creaturePropabilities1.length; i++) {
-        let creatureCLass = this.creaturePropabilities1[i][0];
-        let propability = this.creaturePropabilities1[i][1];
-        sum += propability;
-        if (rand < sum) {
-            return new creatureCLass();
+        let rand = random();
+        let sum = 0;
+        for (let i = 0; i < this.creaturePropabilities1.length; i++) {
+            let creatureCLass = this.creaturePropabilities1[i][0];
+            let propability = this.creaturePropabilities1[i][1];
+            sum += propability;
+            if (rand < sum) {
+                return new creatureCLass();
+            }
         }
+        return new Empty();
     }
-    return new Empty();
-}
+    count() {
+        incrementCounter("MobSpawner")
+    };
 }

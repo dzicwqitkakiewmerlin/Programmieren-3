@@ -7,6 +7,7 @@ import { matrix } from "../utils.js";
 import { updateCreaturePosition } from "../utils.js";
 import { random } from "../utils.js";
 import { MobSpawner } from "./MobSpawner.js";
+import { incrementCounter } from "../data.js";
 
 export class GrassEater extends LivingCreature {
     constructor() {
@@ -30,7 +31,7 @@ export class GrassEater extends LivingCreature {
         }
         if (this.eaten >= 5) {
             this.multiply(Grass, this.getRandomCreature2());
-        } if (this.eaten >= 25) {
+        } if (this.eaten >= 20) {
             matrix[this.row][this.col] = new MobSpawner();
         }
         this.live++;
@@ -64,5 +65,8 @@ export class GrassEater extends LivingCreature {
             }
         }
         return Empty();
+    }
+    count() {
+        incrementCounter("GrassEater")
     }
 }

@@ -15,5 +15,5 @@ export class LivingCreature {
             matrix[row][col] = new creature();
         }
     }
-    step(){};
+    step() { };
 }

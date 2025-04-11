@@ -1,5 +1,6 @@
 import { LivingCreature } from "./LivingCreature.js";
 import { Empty } from "./Empty.js";
+import { incrementCounter } from "../data.js";
 import { random } from "../utils.js";
 export class Grass extends LivingCreature {
     constructor() {
@@ -14,5 +15,8 @@ export class Grass extends LivingCreature {
             this.multiply(Empty, Grass);
             this.energy = 0;
         }
+    }
+    count() {
+        incrementCounter("Grass")
     }
 }

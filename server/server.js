@@ -1,11 +1,12 @@
 // importiere alle benötigen Funktionen, variablen und Klassesn
+
 // je nach Ordnerstruktur, sehen diese Imports unterschiedlich aus
-import { setup, draw } from './simulation/utils.js';
+import { setup, draw, matrix } from './simulation/utils.js';
 
 import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
-
+import { getCounter } from './simulation/data.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -44,9 +45,15 @@ io.on('connection', (socket) => {
     intertval = setInterval(() => {
         draw();
         socket.emit('matrix', getTransformedMatrix());
+        socket.emit('data', data());
     }, 30);
 });
 
 function getTransformedMatrix() {
-    return []
+    return matrix
 }
+
+function data() {
+    return getCounter();
+}
+
