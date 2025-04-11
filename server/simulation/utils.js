@@ -94,8 +94,29 @@ export function draw() {
             }
             if (element.color && typeof element.color[0] !== "undefined") {
                 let colorchar = element.color[0];
-                process.stdout.write(colorchar);
-            } else {
+                //process.stdout.write(colorchar);
+                if(element.color == "green"){
+                    process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
+                }
+                else if(element.color == "red"){
+                    process.stdout.write("\x1b[38;2;255;0;0mR\x1b[0m")
+                }
+                else if(element.color == "yellow"){
+                    process.stdout.write("\x1b[38;2;255;255;0mY\x1b[0m")
+                }
+                else if(element.color == "grey"){
+                    process.stdout.write("\x1b[38;2;128;125;125mG\x1b[0m")
+                }
+                else if(element.color == "black"){
+                    process.stdout.write("\x1b[38;2;0;0;0mB\x1b[0m")
+                }
+                else if(element.color == "white"){
+                    process.stdout.write("\x1b[38;2;255;255;255mW\x1b[0m")
+                }
+                else if(element.color == "#9CFF1D"){
+                    process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
+                }
+            }else {
                 console.warn(`Element at (${element}) does not have a valid color.`);
                 process.stdout.write(" "); // Default to a blank space
             }
