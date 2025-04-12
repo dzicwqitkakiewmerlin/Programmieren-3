@@ -41,11 +41,13 @@ io.on('connection', (socket) => {
         clearInterval(intertval);
     });
 
+    let counter = 0
     setup();
     intertval = setInterval(() => {
         draw();
         socket.emit('matrix', getTransformedMatrix());
-        socket.emit('data', data());
+        if(counter%2==0) socket.emit('data', data());
+        counter++
     }, 30);
 });
 
