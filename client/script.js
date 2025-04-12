@@ -27,11 +27,38 @@ document.addEventListener('DOMContentLoaded', function () {
   const canvas = document.getElementsByClassName('lived');
   if (canvas) {
     const data = {
-      datasets: [{
-        label: 'Test',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-      }]
+      datasets: [
+        {
+        label: 'DeathGrass',
+        backgroundColor: 'rgb(0,0,0)',
+        borderColor: 'rgb(0,0,0)',
+      },
+      {
+        label: 'Grass',
+        backgroundColor: 'rgb(0,255,0)',
+        borderColor: 'rgb(0,255,0)'
+      },
+      {
+        label: 'GrassEater',
+        backgroundColor: 'rgb(255,255,0)',
+        borderColor: 'rgb(255,255,0)'
+      },
+      {
+        label: 'Pups',
+        backgroundColor: 'rgb(128,255,0)',
+        borderColor: 'rgb(128,255,0)'
+      },
+      {
+        label: 'MeatEater',
+        backgroundColor: 'rgb(255,0,0)',
+        borderColor: 'rgb(255,0,0)'
+      },
+      {
+        label: 'MobSpawner',
+        backgroundColor: 'rgb(128,125,125)', 
+        borderColor: 'rgb(128,125,125)'
+      }
+    ]
     };
 
     const config = {
@@ -44,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         scales: {
           y: {
             beginAtZero: false, // Auto-adjust based on data
+            type: 'logarithmic',
           }
         }
       }
@@ -61,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if(chart.data.labels.length >= maxWerte){
         chart.data.labels.shift()
       }
-      chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
+      chart.data.datasets.forEach((dataset, idx) => {
+        dataset.data.push(data[idx]);
         if(dataset.data.length >= maxWerte){
           dataset.data.shift()
         }
@@ -74,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     socket.on('data', (data) => {
      time = (new Date()).toLocaleTimeString()
       console.log("data received", data)
-      addData(myChart, time, data[0]);
+      addData(myChart, time, data);
     })
 
 
