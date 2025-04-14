@@ -109,17 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     console.error('Canvas element not found');
   }
+});
 
-  function godmode() {
-    let cols = Math.floor(matrix / 2);
-    let rows = Math.floor(matrix / 2);
-
-    // Initialisiere das Array mit Nullen
-    for (let y = 0; y < rows; y++) {
-      matrix[y] = [];
-      for (let x = 0; x < cols; x++) {
-        matrix[y][x] = 0;
-      }
-    }
-  }
+document.addEventListener('DOMContentLoaded', function () {
+const button = document.getElementById('godmode');
+button.addEventListener('click', godmode);
+function godmode() {
+  socket.emit('godmode', {});
+}
 });

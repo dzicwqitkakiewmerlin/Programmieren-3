@@ -7,6 +7,7 @@ import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
 import { getCounter } from './simulation/data.js';
+import { Empty } from './simulation/creatures/Empty.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -49,6 +50,13 @@ io.on('connection', (socket) => {
         if(counter%2==0) socket.emit('data', data());
         counter++
     }, 30);
+    socket.on('godmode', () => {
+        for(let j = 0; j < matrix.length; j++){
+            for(let i = 0; i < matrix[j].length; i++){
+                matrix[j][i] = new Empty;
+            }
+        }
+    });
 });
 
 function getTransformedMatrix() {
@@ -58,4 +66,5 @@ function getTransformedMatrix() {
 function data() {
     return getCounter();
 }
+
 
