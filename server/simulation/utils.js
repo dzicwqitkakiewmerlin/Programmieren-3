@@ -91,39 +91,39 @@ export function draw() {
             } else {
                 console.warn(`Element at (${element}) does not have a step method.`);
             }
-            if (element.color && typeof element.color[0] !== "undefined") {
-                //let colorchar = element.color[0];
-                //process.stdout.write(colorchar);
-                if(element.color == "green"){
-                    process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
-                }
-                else if(element.color == "red"){
-                    process.stdout.write("\x1b[38;2;255;0;0mR\x1b[0m")
-                }
-                else if(element.color == "yellow"){
-                    process.stdout.write("\x1b[38;2;255;255;0mY\x1b[0m")
-                }
-                else if(element.color == "grey"){
-                    process.stdout.write("\x1b[38;2;128;125;125mG\x1b[0m")
-                }
-                else if(element.color == "black"){
-                    process.stdout.write("\x1b[38;2;0;0;0mB\x1b[0m")
-                }
-                else if(element.color == "white"){
-                    process.stdout.write("\x1b[38;2;255;255;255mW\x1b[0m")
-                }
-                else if(element.color == "#9CFF1D"){
-                    process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
-                }
-            }else {
-                console.warn(`Element at (${element}) does not have a valid color.`);
-                process.stdout.write(" "); // Default to a blank space
-            }
+            // if (element.color && typeof element.color[0] !== "undefined") {
+            //     //let colorchar = element.color[0];
+            //     //process.stdout.write(colorchar);
+            //     if(element.color == "green"){
+            //         process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
+            //     }
+            //     else if(element.color == "red"){
+            //         process.stdout.write("\x1b[38;2;255;0;0mR\x1b[0m")
+            //     }
+            //     else if(element.color == "yellow"){
+            //         process.stdout.write("\x1b[38;2;255;255;0mY\x1b[0m")
+            //     }
+            //     else if(element.color == "grey"){
+            //         process.stdout.write("\x1b[38;2;128;125;125mG\x1b[0m")
+            //     }
+            //     else if(element.color == "black"){
+            //         process.stdout.write("\x1b[38;2;0;0;0mB\x1b[0m")
+            //     }
+            //     else if(element.color == "white"){
+            //         process.stdout.write("\x1b[38;2;255;255;255mW\x1b[0m")
+            //     }
+            //     else if(element.color == "#9CFF1D"){
+            //         process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
+            //     }
+            // }else {
+            //     console.warn(`Element at (${element}) does not have a valid color.`);
+            //     process.stdout.write(" "); // Default to a blank space
+            // }
           
         }
         // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
         // ist, wollen wir eine neue Zeile auf der Konsole anfangen
-        process.stdout.write("\n")
+        //process.stdout.write("\n")
     }
     
     // optional, aber sehr praktisch:
@@ -131,7 +131,7 @@ export function draw() {
     // sodass beim nächsten ausführen der Schleife, die alte Ausgabe
     // überschrieben wird. Das sorgt dafür, dass wir nicht unendlich
     // viele Zeilen auf der Konsole bekommen.
-    process.stdout.write("\u001b[" + matrix.length + "A")
+    //process.stdout.write("\u001b[" + matrix.length + "A")
 
     // console.log("is running")
     // for (let row = 0; row < matrixSize; row++) {
