@@ -7,7 +7,7 @@ import { Empty } from "./creatures/Empty.js";
 // list of lists. Contains all creatures.
 export let matrix = [];
 // size of the matrix, how many cells in width and height
-let matrixSize = 50;
+export let matrixSize = 50;
 
 // setup the canvas and fill the matrix with creatures
 // Will be called once at the start

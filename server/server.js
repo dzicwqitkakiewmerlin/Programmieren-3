@@ -10,6 +10,8 @@ import { Empty } from './simulation/creatures/Empty.js';
 import { resetData } from './simulation/data.js';
 import { nowlivingcreatures } from './simulation/livingdata.js';
 import { resetlivingdata } from './simulation/livingdata.js';
+import { matrixSize } from './simulation/utils.js';
+import { Grass } from './simulation/creatures/Grass.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -54,13 +56,16 @@ io.on('connection', (socket) => {
         resetlivingdata();
         counter++
     }, 30);
+
     socket.on('godmode', () => {
         for(let j = 0; j < matrix.length; j++){
             for(let i = 0; i < matrix[j].length; i++){
                 matrix[j][i] = new Empty;
             }
         }
+        let middle = matrixSize/2
         resetData();
+        matrix[middle][middle] = new Grass
     });
 });
 
