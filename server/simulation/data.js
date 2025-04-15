@@ -51,7 +51,7 @@ export let now_GrassEasterPups = 0;
 export let now_MeatEater = 0;
 export let now_MobSpawner = 0;
 
-export function increslive(creature, value){
+export function actuallivingcreatures(creature, value){
     if(creature == "deathGrass"){
         now_deathGrass = value;
     }else if (creature == "Grass"){

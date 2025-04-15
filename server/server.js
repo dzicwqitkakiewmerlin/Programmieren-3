@@ -2,13 +2,15 @@
 
 // je nach Ordnerstruktur, sehen diese Imports unterschiedlich aus
 import { setup, draw, matrix } from './simulation/utils.js';
-
 import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
 import { getCounter } from './simulation/data.js';
 import { Empty } from './simulation/creatures/Empty.js';
 import { resetData } from './simulation/data.js';
+import { nowlivingcreatures } from './simulation/livingdata.js';
+import { resetlivingdata } from './simulation/livingdata.js';
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -48,6 +50,8 @@ io.on('connection', (socket) => {
         draw();
         socket.emit('matrix', getTransformedMatrix());
         if(counter%2==0) socket.emit('data', data());
+        if(counter%2==0) socket.emit('livingdata', nowlivingcreatures());
+        resetlivingdata();
         counter++
     }, 30);
     socket.on('godmode', () => {
