@@ -8,7 +8,7 @@ import { Server } from 'socket.io';
 import http from 'http';
 import { getCounter } from './simulation/data.js';
 import { Empty } from './simulation/creatures/Empty.js';
-
+import { resetData } from './simulation/data.js';
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -56,6 +56,7 @@ io.on('connection', (socket) => {
                 matrix[j][i] = new Empty;
             }
         }
+        resetData();
     });
 });
 

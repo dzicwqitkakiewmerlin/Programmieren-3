@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         animation: false,
         scales: {
           y: {
-            beginAtZero: false, // Auto-adjust based on data
+            beginAtZero: true, // Auto-adjust based on data
             type: 'logarithmic',
           }
         }
