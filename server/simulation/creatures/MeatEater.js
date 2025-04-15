@@ -8,14 +8,16 @@ import { matrix } from "../utils.js";
 import { random } from "../utils.js";
 import { updateCreaturePosition } from "../utils.js";
 import { incrementCounter } from "../data.js";
+import { getGender } from "../gender.js";
 
 export class MeatEater extends LivingCreature {
     constructor() {
         super();
         this.color = "red";
-        this.live = 0
-        this.eaten = 0
-
+        this.live = 0;
+        this.eaten = 0;
+        this.counter = 0;
+        this.gender = getGender();
     }
     step() {
         this.eat()
@@ -24,7 +26,38 @@ export class MeatEater extends LivingCreature {
         if (this.live >= 10) {
             this.death()
         } if (this.eaten >= 6) {
-            this.multiply(deathGrass, MeatEater)
+            if(this.gender == "Male"){
+                if(this.counter == 1){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }else if(this.gender == "Female"){
+                if(this.counter == 2){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }else if(this.gender == "Non-binary"){
+                if(this.counter == 3){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }else if(this.gender == "Genderqueer"){
+                if(this.counter == 4){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }else if(this.gender == "Agender"){
+                if(this.counter == 5){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }else if(this.gender == "Genderfluid"){
+                if(this.counter == 6){
+                    this.multiply(deathGrass, MeatEater);
+                    this.counter = 0;
+                }
+            }
+            this.counter++;
         }
         this.live++;
     }

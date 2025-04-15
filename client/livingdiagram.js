@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
           scales: {
             y: {
               beginAtZero: true, // Auto-adjust based on data
-              type: 'logarithmic',
+              //type: 'logarithmic',
             }
           }
         }

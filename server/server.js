@@ -12,6 +12,8 @@ import { nowlivingcreatures } from './simulation/livingdata.js';
 import { resetlivingdata } from './simulation/livingdata.js';
 import { matrixSize } from './simulation/utils.js';
 import { Grass } from './simulation/creatures/Grass.js';
+import { MeatEater } from './simulation/creatures/MeatEater.js';
+import { GrassEater } from './simulation/creatures/GrassEater.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -51,8 +53,8 @@ io.on('connection', (socket) => {
     intertval = setInterval(() => {
         draw();
         socket.emit('matrix', getTransformedMatrix());
-        if(counter%2==0) socket.emit('data', data());
-        if(counter%2==0) socket.emit('livingdata', nowlivingcreatures());
+        if (counter % 2 == 0) socket.emit('data', data());
+        if (counter % 2 == 0) socket.emit('livingdata', nowlivingcreatures());
         resetlivingdata();
         counter++
     }, 30);
@@ -63,9 +65,17 @@ io.on('connection', (socket) => {
                 matrix[j][i] = new Empty;
             }
         }
-        let middle = matrixSize/2
         resetData();
-        matrix[middle][middle] = new Grass
+        counter = 0;
+        for(let j = 0; j < matrix.length; j++){
+            for(let i = 0; i < matrix[j].length; i++){
+                if(counter%1.5 == 0){
+                    matrix[j][i] = new Grass;
+                }
+                counter++;
+            }
+        }
+        matrix[matrixSize/2][matrixSize/2] = new GrassEater;
     });
 });
 

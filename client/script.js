@@ -7,7 +7,7 @@ const cellSize = 10;
 
 // setup Funktion von p5.js
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, cellSize * 50);
 }
 
 // Mit socket.on() können wir auf Ereignisse vom Server reagieren.

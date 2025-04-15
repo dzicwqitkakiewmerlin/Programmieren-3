@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,31 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
   <div>
-    <script src="script.js"></script>
+    <main>
+      <div>
+      <script src="script.js"></script>
+    </div>
+    </main>
+    <div>
     <script src="godmodebutton.js"></script>
-    <button id="godmode">Godmode</button>
-    <script src="liveddiagram.js"></script>
-    <canvas class="lived" width="400" height="400" style="max-width: 800px; max-height: 400px;"></canvas>
-    <script src="livingdiagram.js"></script>
-    <canvas class="living" width="400" height="400" style="max-width: 800px; max-height: 400px;"></canvas>
+    <button id="godmode">Sort</button>
+    </div>
+    <div>
+      <br>
+      How many live now
+      <script src="livingdiagram.js"></script>
+      <canvas class="living" width="400" height="400" style="max-width: 800px; max-height: 400px;"></canvas>
+    </div>
+    <div>
+      <br>
+      Ever lived
+      <script src="liveddiagram.js"></script>
+      <canvas class="lived" width="400" height="400" style="max-width: 800px; max-height: 400px;"></canvas>
+    </div>
   </div>
 </body>
+
 </html>
