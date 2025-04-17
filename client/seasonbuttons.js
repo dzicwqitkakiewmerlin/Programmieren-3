@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {w
     const winter = document.getElementById('winter');
     const spring = document.getElementById('spring');
     const summer = document.getElementById('summer');
