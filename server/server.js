@@ -15,6 +15,7 @@ import { Grass } from './simulation/creatures/Grass.js';
 import { MeatEater } from './simulation/creatures/MeatEater.js';
 import { GrassEater } from './simulation/creatures/GrassEater.js';
 import { nowmonth, season, setseason } from './simulation/season.js';
+import { getColor } from './simulation/getColor.js';
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
@@ -61,25 +62,26 @@ io.on('connection', (socket) => {
         if (counter % 2 == 0) socket.emit('livingdata', nowlivingcreatures());
         resetlivingdata();
         counter++
+        socket.emit('colors', getColor());
     }, 40);
 
     socket.on('godmode', () => {
-        for(let j = 0; j < matrix.length; j++){
-            for(let i = 0; i < matrix[j].length; i++){
+        for (let j = 0; j < matrix.length; j++) {
+            for (let i = 0; i < matrix[j].length; i++) {
                 matrix[j][i] = new Empty;
             }
         }
         resetData();
         counter = 0;
-        for(let j = 0; j < matrix.length; j++){
-            for(let i = 0; i < matrix[j].length; i++){
-                if(counter%1.5 == 0){
+        for (let j = 0; j < matrix.length; j++) {
+            for (let i = 0; i < matrix[j].length; i++) {
+                if (counter % 1.5 == 0) {
                     matrix[j][i] = new Grass;
                 }
                 counter++;
             }
         }
-        matrix[matrixSize/2][matrixSize/2] = new GrassEater;
+        matrix[matrixSize / 2][matrixSize / 2] = new GrassEater;
     });
     socket.on('winter', () => {
         setseason(0);
@@ -102,5 +104,3 @@ function getTransformedMatrix() {
 function data() {
     return getCounter();
 }
-
-

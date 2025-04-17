@@ -9,7 +9,7 @@ export class Grass extends LivingCreature {
         super();
         this.id = "Grass";
         if(season == 0){
-            this.color = "white"
+            this.color = "#dfdfdf"
         }else {
             this.color = "green"
         }

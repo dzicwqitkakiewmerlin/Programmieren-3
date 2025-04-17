@@ -5,13 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
           {
           label: 'DeathGrass',
-          backgroundColor: 'rgb(0,0,0)',
-          borderColor: 'rgb(0,0,0)',
         },
         {
           label: 'Grass',
-          backgroundColor: 'rgb(0,255,0)',
-          borderColor: 'rgb(0,255,0)'
         },
         {
           label: 'GrassEater',
@@ -30,8 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           label: 'MobSpawner',
-          backgroundColor: 'rgb(128,125,125)', 
-          borderColor: 'rgb(128,125,125)'
         }
       ]
       };
@@ -72,6 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         chart.update();
       }
+      function changeColor(colors) {
+        myChart.data.datasets[0].backgroundColor = colors[0];
+        myChart.data.datasets[0].borderColor = colors[0];
+        myChart.data.datasets[1].backgroundColor = colors[1];
+        myChart.data.datasets[1].borderColor = colors[1];
+        myChart.data.datasets[5].backgroundColor = colors[2];
+        myChart.data.datasets[5].borderColor = colors[2];
+        myChart.update(); 
+      }
   
       let time = 0
       socket.on('livingdata', (livingData) => {
@@ -79,7 +82,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // console.log("data received", livingData)
         addData(myChart, time, livingData);
       })
-  
+      socket.on('colors', (colors) => {
+        changeColor(colors)
+      });
   
     } else {
       console.error('Canvas element not found');

@@ -1,87 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const canvas = document.getElementsByClassName('lived');
-    if (canvas) {
-      const data = {
-        datasets: [
-          {
-          label: 'DeathGrass',
-          backgroundColor: 'rgb(0,0,0)',
-          borderColor: 'rgb(0,0,0)',
-        },
-        {
-          label: 'Grass',
-          backgroundColor: 'rgb(0,255,0)',
-          borderColor: 'rgb(0,255,0)'
-        },
-        {
-          label: 'GrassEater',
-          backgroundColor: 'rgb(255,255,0)',
-          borderColor: 'rgb(255,255,0)'
-        },
-        {
-          label: 'Pups',
-          backgroundColor: 'rgb(128,255,0)',
-          borderColor: 'rgb(128,255,0)'
-        },
-        {
-          label: 'MeatEater',
-          backgroundColor: 'rgb(255,0,0)',
-          borderColor: 'rgb(255,0,0)'
-        },
-        {
-          label: 'MobSpawner',
-          backgroundColor: 'rgb(128,125,125)', 
-          borderColor: 'rgb(128,125,125)'
-        }
-      ]
-      };
-  
-      const config = {
-        type: 'line',
-        data: data,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          scales: {
-            y: {
-              beginAtZero: true, // Auto-adjust based on data
-              type: 'logarithmic',
-            }
-          }
-        }
-      };
-  
-  
-      const myChart = new Chart(
-        canvas,
-        config
-      );
-  
-      // function to update the chart 
-      function addData(chart, label, data, maxWerte=100) {
-        chart.data.labels.push(label);
-        if(chart.data.labels.length >= maxWerte){
-          chart.data.labels.shift()
-        }
-        chart.data.datasets.forEach((dataset, idx) => {
-          dataset.data.push(data[idx]);
-          if(dataset.data.length >= maxWerte){
-            dataset.data.shift()
-          }
-        });
-        chart.update();
+  const canvas = document.getElementsByClassName('lived')[0];
+  if (canvas) {
+    const data = {
+      labels: [
+        'DeathGrass',
+        'Grass',
+        'GrassEater',
+        'Pups',
+        'MeatEater',
+        'MobSpawner'
+      ],
+      datasets: [{
+        data: [0, 0, 0, 0, 0, 0], // Initial values for each label
+        backgroundColor: [
+          'rgb(0,0,0)',
+          'rgb(0,255,0)',
+          'rgb(255,255,0)',
+          'rgb(128,255,0)',
+          'rgb(255,0,0)',
+          'rgb(128,125,125)'
+        ],
+        borderColor: 'rgba(255, 255, 255, 0.5)',
+        borderWidth: 1
+      }]
+    };
+
+    const config = {
+      type: 'doughnut',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false
       }
-  
-      let time = 0
-      socket.on('data', (data) => {
-       time = (new Date()).toLocaleTimeString()
-        //console.log("data received", data)
-        addData(myChart, time, data);
-      })
-  
-  
-    } else {
-      console.error('Canvas element not found');
+    };
+
+    const myChart = new Chart(canvas, config);
+
+    function updateData(chart, newData) {
+      chart.data.datasets[0].data = newData; // Update the dataset with new data
+      chart.update();
     }
-  });
+
+    function changeColor(colors) {
+      let doughnutcolor = [colors[0], colors[1],'rgb(255,255,0)', 'rgb(128,255,0)', 'rgb(255,0,0)', colors[2]];
+      myChart.data.datasets[0].backgroundColor = doughnutcolor; 
+      myChart.update(); 
+    }
+
+    socket.on('data', (data) => {
+      updateData(myChart, data);
+    });
+    socket.on('colors', (colors) => {
+      changeColor(colors)
+    });
+
+  } else {
+    console.error('Canvas element not found');
+  }
+});
+
