@@ -89,6 +89,10 @@ export function draw() {
                 if (element.count !== "undefined" && element.counted === false) {
                     element.count();
                     element.counted = true;
+                } if (season == 2) {
+                    if (typeof element.burn === "function") {
+                        element.burn()
+                    }
                 }
             } else {
                 console.warn(`Element at (${element}) does not have a step method.`);
@@ -116,23 +120,23 @@ export function draw() {
                 // else if(element.id == "GrassEaterPups"){
                 //     process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
                 // }
-            }else {
+            } else {
                 console.warn(`Element at (${element}) does not have a valid color.`);
                 process.stdout.write(" "); // Default to a blank space
             }
-          
+
         }
         // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
         // ist, wollen wir eine neue Zeile auf der Konsole anfangen
-        process.stdout.write("\n")
+        // process.stdout.write("\n")
     }
-    
+
     // optional, aber sehr praktisch:
     // wir können den Curser auf der Konsole nach oben bewegen,
     // sodass beim nächsten ausführen der Schleife, die alte Ausgabe
     // überschrieben wird. Das sorgt dafür, dass wir nicht unendlich
     // viele Zeilen auf der Konsole bekommen.
-    process.stdout.write("\u001b[" + matrix.length + "A")
+    // process.stdout.write("\u001b[" + matrix.length + "A")
 
     // console.log("is running")
     // for (let row = 0; row < matrixSize; row++) {
@@ -160,7 +164,7 @@ export function draw() {
 }
 
 
-  
 
-  
-  
+
+
+

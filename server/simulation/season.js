@@ -15,3 +15,14 @@ export function nowmonth(){
         return season= 3;
     }
 }
+export function setseason(value){
+    if(value == 0){
+        season = 0;
+    }else if(value == 1){
+        season = 1;
+    }else if(value == 2){
+        season = 2;
+    }else if(value == 3){
+        season = 3;
+    }
+}

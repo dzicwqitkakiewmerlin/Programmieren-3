@@ -9,7 +9,7 @@ import { random } from "../utils.js";
 import { MobSpawner } from "./MobSpawner.js";
 import { incrementCounter } from "../data.js";
 import { getGender } from "../gender.js";
-
+import { season } from "../season.js";
 export class GrassEater extends LivingCreature {
     constructor() {
         super();
@@ -20,6 +20,13 @@ export class GrassEater extends LivingCreature {
         this.gender = getGender();
         this.counter = 0;
         this.creaturePropabilities2 = [];
+        if(season == 0){
+            this.sex = 7;
+        }else if(season == 1){
+            this.sex = 3;
+        }else{
+            this.sex = 5;
+        }
         // What probability each creature has to be created
         this.creaturePropabilities2 = [
             [GrassEater, 0.95],
@@ -32,7 +39,7 @@ export class GrassEater extends LivingCreature {
         if (this.live >= 10) {
             this.death()
         }
-        if (this.eaten >= 5) {
+        if (this.eaten >= this.sex) {
             //politisch nicht korrekt aber musste mich entscheiden wegen der Aufgabe, somit egal. Die Reihenfolge ist entstanden durch den Vorschlag von VSCode in gender.js
             //sollte es zur Anklage kommen, dann ist es nicht meine Schuld, sondern die von VSCode
             if(this.gender == "Male"){

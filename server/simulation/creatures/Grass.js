@@ -3,6 +3,7 @@ import { Empty } from "./Empty.js";
 import { incrementCounter } from "../data.js";
 import { random } from "../utils.js";
 import { season } from "../season.js";
+import { deathGrass } from "./deathGrass.js";
 export class Grass extends LivingCreature {
     constructor() {
         super();
@@ -24,5 +25,12 @@ export class Grass extends LivingCreature {
     }
     count() {
         incrementCounter("Grass")
+    }
+    burn() {
+        if(season == 2){
+            if(random(0, 25) == 1){
+                this.multiply(Empty, deathGrass);
+            }
+        }
     }
 }

@@ -14,12 +14,20 @@
   <div>
     <main>
       <div>
-      <script src="script.js"></script>
-    </div>
+        <script src="script.js"></script>
+
+      </div>
     </main>
     <div>
-    <script src="godmodebutton.js"></script>
-    <button id="godmode">Sort</button>
+      <script src="godmodebutton.js"></script>
+      <button id="godmode" class="godmode">Sort</button>
+      <div class="seasons-container">
+        <script src="seasonbuttons.js"></script>
+        <button id="winter" class="winter">Winter</button>
+        <button id="spring" class="spring">Spring</button>
+        <button id="summer" class="summer">Summer</button>
+        <button id="autumn" class="autumn">Autumn</button>
+      </div>
     </div>
     <div>
       <br>
@@ -37,3 +45,299 @@
 </body>
 
 </html>
+<style>
+  /* CSS */
+  .godmode {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .godmode:hover {
+    box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+  }
+
+  .seasons-container {
+  display: flex;
+  justify-content: left; /* Zentriert die Buttons horizontal */
+  gap: 10px; /* Abstand zwischen den Buttons */
+  margin-top: 20px; /* Optional: Abstand nach oben */
+}
+
+.winter, .spring, .summer, .autumn {
+  display: inline-block; /* Entferne das individuelle Flexbox-Layout */
+}
+  .autumn {
+    display: flex;
+    justify-content: center;
+    /* Zentriert die Buttons horizontal */
+    gap: 10px;
+    /* Abstand zwischen den Buttons */
+    margin-top: 20px;
+    /* Optional: Abstand nach oben */
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .autumn:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+
+  .autumn:hover:after {
+    transform: translate(0, 0);
+  }
+
+  .autumn:active {
+    background-color: #ffdeda;
+    outline: 0;
+  }
+
+  .autumn:hover {
+    outline: 0;
+  }
+
+  @media (min-width: 768px) {
+    .autumn {
+      padding: 0 40px;
+    }
+  }
+
+  .summer {
+    display: flex;
+    justify-content: center;
+    /* Zentriert die Buttons horizontal */
+    gap: 10px;
+    /* Abstand zwischen den Buttons */
+    margin-top: 20px;
+    /* Optional: Abstand nach oben */
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .summer:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+
+  .summer:hover:after {
+    transform: translate(0, 0);
+  }
+
+  .summer:active {
+    background-color: #ffdeda;
+    outline: 0;
+  }
+
+  .summer:hover {
+    outline: 0;
+  }
+
+  @media (min-width: 768px) {
+    .summer {
+      padding: 0 40px;
+    }
+  }
+
+  .spring {
+    display: flex;
+    justify-content: center;
+    /* Zentriert die Buttons horizontal */
+    gap: 10px;
+    /* Abstand zwischen den Buttons */
+    margin-top: 20px;
+    /* Optional: Abstand nach oben */
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .spring:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+
+  .spring:hover:after {
+    transform: translate(0, 0);
+  }
+
+  .spring:active {
+    background-color: #ffdeda;
+    outline: 0;
+  }
+
+  .spring:hover {
+    outline: 0;
+  }
+
+  @media (min-width: 768px) {
+    .spring {
+      padding: 0 40px;
+    }
+  }
+
+  .winter {
+    display: flex;
+    justify-content: center;
+    /* Zentriert die Buttons horizontal */
+    gap: 10px;
+    /* Abstand zwischen den Buttons */
+    margin-top: 20px;
+    /* Optional: Abstand nach oben */
+    align-items: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    height: 48px;
+    justify-content: center;
+    line-height: 24px;
+    max-width: 100%;
+    padding: 0 25px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .winter:after {
+    background-color: #111;
+    border-radius: 8px;
+    content: "";
+    display: block;
+    height: 48px;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    top: -2px;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    z-index: -1;
+  }
+
+  .winter:hover:after {
+    transform: translate(0, 0);
+  }
+
+  .winter:active {
+    background-color: #ffdeda;
+    outline: 0;
+  }
+
+  .winter:hover {
+    outline: 0;
+  }
+
+  @media (min-width: 768px) {
+    .winter {
+      padding: 0 40px;
+    }
+  }
+</style>

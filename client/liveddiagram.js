@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
       );
   
       // function to update the chart 
-      function addData(chart, label, data, maxWerte=300) {
+      function addData(chart, label, data, maxWerte=100) {
         chart.data.labels.push(label);
         if(chart.data.labels.length >= maxWerte){
           chart.data.labels.shift()

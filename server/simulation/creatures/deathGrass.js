@@ -8,7 +8,7 @@ export class deathGrass extends LivingCreature {
         super();
         this.id = "deathGrass";
         if(season == 2){
-            this.color = "brown";
+            this.color = "#c17f1d";
         }else{
             this.color = "black";
         }

@@ -9,6 +9,7 @@ import { random } from "../utils.js";
 import { updateCreaturePosition } from "../utils.js";
 import { incrementCounter } from "../data.js";
 import { getGender } from "../gender.js";
+import { season } from "../season.js";
 
 export class MeatEater extends LivingCreature {
     constructor() {
@@ -19,6 +20,11 @@ export class MeatEater extends LivingCreature {
         this.eaten = 0;
         this.counter = 0;
         this.gender = getGender();
+        if(season == 3){
+            this.sex = 3;
+        }else{
+            this.sex = 6;
+        }
     }
     step() {
         this.eat()
@@ -26,7 +32,7 @@ export class MeatEater extends LivingCreature {
         this.ersticken()
         if (this.live >= 10) {
             this.death()
-        } if (this.eaten >= 6) {
+        } if (this.eaten >= this.sex) {
             if(this.gender == "Male"){
                 if(this.counter == 1){
                     this.multiply(deathGrass, MeatEater);
