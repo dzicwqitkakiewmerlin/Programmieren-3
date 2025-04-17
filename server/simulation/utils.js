@@ -99,7 +99,7 @@ export function draw() {
             }
             if (element.id !== "undefined") {
                 // // console.log(element.id);
-                //FOR MORE PERFORMANCE COMMENT THIS OUT UP TO LINE 140
+                FOR MORE PERFORMANCE COMMENT THIS OUT UP TO LINE 123 AND LINE 132 AND LINE 140
                 if(element.id == "Grass"){
                     process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
                 }
@@ -129,7 +129,7 @@ export function draw() {
         }
         // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
         // ist, wollen wir eine neue Zeile auf der Konsole anfangen
-        process.stdout.write("\n")
+         process.stdout.write("\n")
     }
 
     // optional, aber sehr praktisch:
@@ -137,7 +137,7 @@ export function draw() {
     // sodass beim nächsten ausführen der Schleife, die alte Ausgabe
     // überschrieben wird. Das sorgt dafür, dass wir nicht unendlich
     // viele Zeilen auf der Konsole bekommen.
-    process.stdout.write("\u001b[" + matrix.length + "A")
+     process.stdout.write("\u001b[" + matrix.length + "A")
 
     // console.log("is running")
     // for (let row = 0; row < matrixSize; row++) {
