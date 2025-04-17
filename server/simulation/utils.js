@@ -99,7 +99,7 @@ export function draw() {
             }
             if (element.id !== "undefined") {
                 // // console.log(element.id);
-                FOR MORE PERFORMANCE COMMENT THIS OUT UP TO LINE 123 AND LINE 132 AND LINE 140
+                //FOR MORE PERFORMANCE COMMENT THIS OUT UP TO LINE 123 AND LINE 132 AND LINE 140
                 if(element.id == "Grass"){
                     process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
                 }
