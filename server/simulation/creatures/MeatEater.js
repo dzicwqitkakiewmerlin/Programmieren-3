@@ -13,6 +13,7 @@ import { getGender } from "../gender.js";
 export class MeatEater extends LivingCreature {
     constructor() {
         super();
+        this.id = "MeatEater";
         this.color = "red";
         this.live = 0;
         this.eaten = 0;

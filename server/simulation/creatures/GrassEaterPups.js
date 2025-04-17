@@ -11,6 +11,7 @@ import { incrementCounter } from "../data.js";
 export class GrassEaterPups extends GrassEater {
     constructor() {
         super();
+        this.id = "GrassEaterPups";
         this.color = "#9CFF1D";
         this.live = 0
         this.blockSize = 20

@@ -4,9 +4,18 @@ import { MeatEater } from "./MeatEater.js";
 import { random } from "../utils.js";
 import { matrix } from "../utils.js";
 import { incrementCounter } from "../data.js";
+import { season } from "../season.js";
 export class MobSpawner {
     constructor() {
-        this.color = "grey"
+        this.id = "MobSpawner";
+        this.counted = false;
+        if(season == 1){
+            this.color = "#f27afa"
+        }else if(season == 3){
+            this.color = "#fac67a"
+        }else{
+            this.color = "grey"
+        }
         this.counter = 0
         this.blockSize = 5
         this.creaturePropabilities1 = [

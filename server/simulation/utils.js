@@ -4,6 +4,7 @@ import { GrassEater } from "./creatures/GrassEater.js";
 import { MeatEater } from "./creatures/MeatEater.js";
 import { MobSpawner } from "./creatures/MobSpawner.js";
 import { Empty } from "./creatures/Empty.js";
+import { season } from "./season.js";
 // list of lists. Contains all creatures.
 export let matrix = [];
 // size of the matrix, how many cells in width and height
@@ -85,45 +86,45 @@ export function draw() {
             //console.log(matrix[zeile][spalte])
             if (typeof element.step === "function") {
                 element.step();
-                if (element.count !== "undefined") {
+                if (element.count !== "undefined" && element.counted === false) {
                     element.count();
+                    element.counted = true;
                 }
             } else {
                 console.warn(`Element at (${element}) does not have a step method.`);
             }
-            // if (element.color && typeof element.color[0] !== "undefined") {
-            //     //let colorchar = element.color[0];
-            //     //process.stdout.write(colorchar);
-            //     if(element.color == "green"){
-            //         process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
-            //     }
-            //     else if(element.color == "red"){
-            //         process.stdout.write("\x1b[38;2;255;0;0mR\x1b[0m")
-            //     }
-            //     else if(element.color == "yellow"){
-            //         process.stdout.write("\x1b[38;2;255;255;0mY\x1b[0m")
-            //     }
-            //     else if(element.color == "grey"){
-            //         process.stdout.write("\x1b[38;2;128;125;125mG\x1b[0m")
-            //     }
-            //     else if(element.color == "black"){
-            //         process.stdout.write("\x1b[38;2;0;0;0mB\x1b[0m")
-            //     }
-            //     else if(element.color == "white"){
-            //         process.stdout.write("\x1b[38;2;255;255;255mW\x1b[0m")
-            //     }
-            //     else if(element.color == "#9CFF1D"){
-            //         process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
-            //     }
-            // }else {
-            //     console.warn(`Element at (${element}) does not have a valid color.`);
-            //     process.stdout.write(" "); // Default to a blank space
-            // }
+            if (element.id !== "undefined") {
+                // // console.log(element.id);
+                // if(element.id == "Grass"){
+                //     process.stdout.write("\x1b[38;2;0;255;0mG\x1b[0m")
+                // }
+                // else if(element.id == "MeatEater"){
+                //     process.stdout.write("\x1b[38;2;255;0;0mM\x1b[0m")
+                // }
+                // else if(element.id == "GrassEater"){
+                //     process.stdout.write("\x1b[38;2;255;255;0mY\x1b[0m")
+                // }
+                // else if(element.id == "MobSpawner"){
+                //     process.stdout.write("\x1b[38;2;128;125;125mM\x1b[0m")
+                // }
+                // else if(element.id == "deathGrass"){
+                //     process.stdout.write("\x1b[38;2;0;0;0mD\x1b[0m")
+                // }
+                // else if(element.id == "Empty"){
+                //     process.stdout.write("\x1b[38;2;255;255;255mE\x1b[0m")
+                // }
+                // else if(element.id == "GrassEaterPups"){
+                //     process.stdout.write("\x1b[38;2;128;255;0mP\x1b[0m")  
+                // }
+            }else {
+                console.warn(`Element at (${element}) does not have a valid color.`);
+                process.stdout.write(" "); // Default to a blank space
+            }
           
         }
         // Wenn der erste Durchlauf von der Äußerden Schleife (Zeile) fertig
         // ist, wollen wir eine neue Zeile auf der Konsole anfangen
-        //process.stdout.write("\n")
+        process.stdout.write("\n")
     }
     
     // optional, aber sehr praktisch:
@@ -131,7 +132,7 @@ export function draw() {
     // sodass beim nächsten ausführen der Schleife, die alte Ausgabe
     // überschrieben wird. Das sorgt dafür, dass wir nicht unendlich
     // viele Zeilen auf der Konsole bekommen.
-    //process.stdout.write("\u001b[" + matrix.length + "A")
+    process.stdout.write("\u001b[" + matrix.length + "A")
 
     // console.log("is running")
     // for (let row = 0; row < matrixSize; row++) {

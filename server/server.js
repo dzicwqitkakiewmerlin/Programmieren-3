@@ -14,6 +14,7 @@ import { matrixSize } from './simulation/utils.js';
 import { Grass } from './simulation/creatures/Grass.js';
 import { MeatEater } from './simulation/creatures/MeatEater.js';
 import { GrassEater } from './simulation/creatures/GrassEater.js';
+import { nowmonth } from './simulation/season.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -36,16 +37,20 @@ app.get('/', (req, res) => {
 // wir starten den Server auf dem Port 3000
 server.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
+    nowmonth();
 });
 
 // wenn ein Benutzer eine Verbindung zum Server herstellt, wird diese Funktion ausgeführt
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {
+        resetData();
+        resetlivingdata();
         console.log('user disconnected');
 
         // wir stoppen das Spiel, wenn der Benutzer die Verbindung trennt
         clearInterval(intertval);
+
     });
 
     let counter = 0

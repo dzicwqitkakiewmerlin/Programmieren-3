@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let time = 0
       socket.on('livingdata', (livingData) => {
        time = (new Date()).toLocaleTimeString()
-        console.log("data received", livingData)
+        // console.log("data received", livingData)
         addData(myChart, time, livingData);
       })
   

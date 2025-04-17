@@ -3,6 +3,7 @@ import { random } from "../utils.js";
 import { matrix } from "../utils.js";
 export class LivingCreature {
     constructor() {
+        this.counted = false;
         this.color = "blue";
         this.blockSize = 5
     }

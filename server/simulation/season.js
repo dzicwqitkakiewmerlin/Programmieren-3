@@ -1,12 +1,17 @@
 const month = new Date().getUTCMonth();
-function month(){
+export let season = 0; // 0 = winter, 1 = spring, 2 = summer, 3 = autumn
+export function nowmonth(){
+    //winter
     if(month <= 2){
-        return 0;
+        return season = 0;
+    //spring
     }else if(month <= 5){
-        return 1;
+        return season = 1;
+    //summer
     }else if(month <= 8){
-        return 2;
+        return season = 2;
+    //autumn
     }else if(month <= 11){
-        return 3;
+        return season= 3;
     }
 }

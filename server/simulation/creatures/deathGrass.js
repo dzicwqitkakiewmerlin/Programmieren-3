@@ -2,10 +2,16 @@ import { LivingCreature } from "./LivingCreature.js";
 import { random } from "../utils.js";
 import { Empty } from "./Empty.js";
 import { incrementCounter } from "../data.js";
+import { season } from "../season.js";
 export class deathGrass extends LivingCreature {
     constructor() {
         super();
-        this.color = "black";
+        this.id = "deathGrass";
+        if(season == 2){
+            this.color = "brown";
+        }else{
+            this.color = "black";
+        }
         this.energy = random(0, 3);
     }
 
